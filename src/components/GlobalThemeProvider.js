@@ -15,9 +15,9 @@ export default function GlobalThemeProvider({ children, ...props }) {
     // Inject the theme variables dynamically
     if (typeof window !== "undefined") {
       const root = document.documentElement;
-      if (global.primaryColor) root.style.setProperty("--primary-color", global.primaryColor);
-      if (global.secondaryColor) root.style.setProperty("--secondary-color", global.secondaryColor);
-      if (global.accentColor) root.style.setProperty("--accent-color", global.accentColor);
+      if (global.primaryColor) root.style.setProperty("--primary", global.primaryColor);
+      if (global.secondaryColor) root.style.setProperty("--secondary", global.secondaryColor);
+      if (global.accentColor) root.style.setProperty("--accent", global.accentColor);
     }
   }
 

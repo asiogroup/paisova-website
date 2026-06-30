@@ -69,48 +69,48 @@ export default function GoalPlanner() {
         <div className="input-group">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <label style={{ fontWeight: 500, color: '#475569' }}>Goal Amount (Today's Value)</label>
-            <span style={{ fontWeight: 600, color: 'var(--primary-color)' }}>₹{targetGoal.toLocaleString('en-IN')}</span>
+            <span style={{ fontWeight: 600, color: 'var(--primary)' }}>₹{targetGoal.toLocaleString('en-IN')}</span>
           </div>
           <input 
             type="range" min="100000" max="50000000" step="100000" 
             value={targetGoal} onChange={(e) => setTargetGoal(Number(e.target.value))}
-            style={{ width: '100%', accentColor: 'var(--primary-color)' }} 
+            style={{ width: '100%', accentColor: 'var(--primary)' }} 
           />
         </div>
 
         <div className="input-group">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <label style={{ fontWeight: 500, color: '#475569' }}>Time to Goal</label>
-            <span style={{ fontWeight: 600, color: 'var(--primary-color)' }}>{durationYears} Years</span>
+            <span style={{ fontWeight: 600, color: 'var(--primary)' }}>{durationYears} Years</span>
           </div>
           <input 
             type="range" min="1" max="40" step="1" 
             value={durationYears} onChange={(e) => setDurationYears(Number(e.target.value))}
-            style={{ width: '100%', accentColor: 'var(--primary-color)' }} 
+            style={{ width: '100%', accentColor: 'var(--primary)' }} 
           />
         </div>
 
         <div className="input-group">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <label style={{ fontWeight: 500, color: '#475569' }}>Expected Return</label>
-            <span style={{ fontWeight: 600, color: 'var(--primary-color)' }}>{expectedReturn}%</span>
+            <span style={{ fontWeight: 600, color: 'var(--primary)' }}>{expectedReturn}%</span>
           </div>
           <input 
             type="range" min="5" max="30" step="0.5" 
             value={expectedReturn} onChange={(e) => setExpectedReturn(Number(e.target.value))}
-            style={{ width: '100%', accentColor: 'var(--primary-color)' }} 
+            style={{ width: '100%', accentColor: 'var(--primary)' }} 
           />
         </div>
 
         <div className="input-group">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <label style={{ fontWeight: 500, color: '#475569' }}>Expected Inflation</label>
-            <span style={{ fontWeight: 600, color: 'var(--primary-color)' }}>{inflation}%</span>
+            <span style={{ fontWeight: 600, color: 'var(--primary)' }}>{inflation}%</span>
           </div>
           <input 
             type="range" min="0" max="15" step="0.5" 
             value={inflation} onChange={(e) => setInflation(Number(e.target.value))}
-            style={{ width: '100%', accentColor: 'var(--primary-color)' }} 
+            style={{ width: '100%', accentColor: 'var(--primary)' }} 
           />
         </div>
       </div>
@@ -120,7 +120,7 @@ export default function GoalPlanner() {
         
         {/* Result Cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
-          <div className="result-card" style={{ padding: '1.5rem', backgroundColor: 'var(--primary-color)', color: 'white', borderRadius: '12px' }}>
+          <div className="result-card" style={{ padding: '1.5rem', backgroundColor: 'var(--primary)', color: 'white', borderRadius: '12px' }}>
             <p style={{ fontSize: '0.875rem', marginBottom: '0.5rem', opacity: 0.9 }}>Required Monthly SIP</p>
             <h3 style={{ fontSize: '1.75rem' }}>{formatCurrency(Math.round(calculations.requiredSip))}</h3>
           </div>
@@ -140,8 +140,8 @@ export default function GoalPlanner() {
             <AreaChart data={calculations.data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorWealthGoal" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--primary-color)" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="var(--primary-color)" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="var(--primary)" stopOpacity={0}/>
                 </linearGradient>
               </defs>
               <XAxis dataKey="year" tick={{ fontSize: 12, fill: '#64748b' }} axisLine={false} tickLine={false} />
@@ -156,7 +156,7 @@ export default function GoalPlanner() {
                 formatter={(value) => formatCurrency(value)}
                 contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
               />
-              <Area type="monotone" dataKey="wealth" name="Accumulated Wealth" stroke="var(--primary-color)" strokeWidth={3} fillOpacity={1} fill="url(#colorWealthGoal)" />
+              <Area type="monotone" dataKey="wealth" name="Accumulated Wealth" stroke="var(--primary)" strokeWidth={3} fillOpacity={1} fill="url(#colorWealthGoal)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>

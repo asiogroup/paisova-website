@@ -8,7 +8,7 @@ export const metadata = {
 export default function ToolsPage() {
   return (
     <div className="tools-page-container" style={{ backgroundColor: '#f8fafc', minHeight: '100vh', paddingBottom: '4rem' }}>
-      <div className="section-header text-center" style={{ padding: '4rem 1.5rem', backgroundColor: 'var(--primary-color)', color: 'white' }}>
+      <div className="section-header text-center" style={{ padding: '4rem 1.5rem', backgroundColor: 'var(--primary)', color: 'white' }}>
         <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Investor Toolkit</h1>
         <p style={{ fontSize: '1.25rem', opacity: 0.9 }}>Plan. Compare. Visualize.</p>
       </div>

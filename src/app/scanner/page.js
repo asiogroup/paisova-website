@@ -6,9 +6,7 @@ export const metadata = {
 export default function Scanner() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 80px)' }}>
-      <div className="container" style={{ padding: '1rem 1.5rem' }}>
-        <h1 className="h2" style={{ marginBottom: 0 }}>Paisova Scanner</h1>
-      </div>
+
       <div style={{ flex: 1, width: '100%', position: 'relative', overflow: 'hidden' }}>
         <iframe 
           src="https://intraday-dashboard-self.vercel.app" 

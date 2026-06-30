@@ -60,48 +60,48 @@ export default function SipCalculator() {
         <div className="input-group">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <label style={{ fontWeight: 500, color: '#475569' }}>Monthly Investment</label>
-            <span style={{ fontWeight: 600, color: 'var(--primary-color)' }}>₹{monthlySip.toLocaleString('en-IN')}</span>
+            <span style={{ fontWeight: 600, color: 'var(--primary)' }}>₹{monthlySip.toLocaleString('en-IN')}</span>
           </div>
           <input 
             type="range" min="500" max="100000" step="500" 
             value={monthlySip} onChange={(e) => setMonthlySip(Number(e.target.value))}
-            style={{ width: '100%', accentColor: 'var(--primary-color)' }} 
+            style={{ width: '100%', accentColor: 'var(--primary)' }} 
           />
         </div>
 
         <div className="input-group">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <label style={{ fontWeight: 500, color: '#475569' }}>Expected Return (p.a)</label>
-            <span style={{ fontWeight: 600, color: 'var(--primary-color)' }}>{expectedReturn}%</span>
+            <span style={{ fontWeight: 600, color: 'var(--primary)' }}>{expectedReturn}%</span>
           </div>
           <input 
             type="range" min="5" max="30" step="0.5" 
             value={expectedReturn} onChange={(e) => setExpectedReturn(Number(e.target.value))}
-            style={{ width: '100%', accentColor: 'var(--primary-color)' }} 
+            style={{ width: '100%', accentColor: 'var(--primary)' }} 
           />
         </div>
 
         <div className="input-group">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <label style={{ fontWeight: 500, color: '#475569' }}>Time Period</label>
-            <span style={{ fontWeight: 600, color: 'var(--primary-color)' }}>{durationYears} Years</span>
+            <span style={{ fontWeight: 600, color: 'var(--primary)' }}>{durationYears} Years</span>
           </div>
           <input 
             type="range" min="1" max="40" step="1" 
             value={durationYears} onChange={(e) => setDurationYears(Number(e.target.value))}
-            style={{ width: '100%', accentColor: 'var(--primary-color)' }} 
+            style={{ width: '100%', accentColor: 'var(--primary)' }} 
           />
         </div>
 
         <div className="input-group">
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
             <label style={{ fontWeight: 500, color: '#475569' }}>Annual Step-Up</label>
-            <span style={{ fontWeight: 600, color: 'var(--primary-color)' }}>{stepUp}%</span>
+            <span style={{ fontWeight: 600, color: 'var(--primary)' }}>{stepUp}%</span>
           </div>
           <input 
             type="range" min="0" max="25" step="1" 
             value={stepUp} onChange={(e) => setStepUp(Number(e.target.value))}
-            style={{ width: '100%', accentColor: 'var(--primary-color)' }} 
+            style={{ width: '100%', accentColor: 'var(--primary)' }} 
           />
         </div>
       </div>
@@ -119,7 +119,7 @@ export default function SipCalculator() {
             <p style={{ color: '#059669', fontSize: '0.875rem', marginBottom: '0.5rem' }}>Est. Returns</p>
             <h3 style={{ fontSize: '1.5rem', color: '#059669' }}>{formatCurrency(totalGains)}</h3>
           </div>
-          <div className="result-card" style={{ padding: '1.5rem', backgroundColor: 'var(--primary-color)', color: 'white', borderRadius: '12px' }}>
+          <div className="result-card" style={{ padding: '1.5rem', backgroundColor: 'var(--primary)', color: 'white', borderRadius: '12px' }}>
             <p style={{ fontSize: '0.875rem', marginBottom: '0.5rem', opacity: 0.9 }}>Total Value</p>
             <h3 style={{ fontSize: '1.75rem' }}>{formatCurrency(finalData.wealth)}</h3>
           </div>
@@ -131,8 +131,8 @@ export default function SipCalculator() {
             <AreaChart data={projectionData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorWealth" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--primary-color)" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="var(--primary-color)" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="var(--primary)" stopOpacity={0}/>
                 </linearGradient>
                 <linearGradient id="colorInvested" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#94a3b8" stopOpacity={0.3}/>
@@ -152,7 +152,7 @@ export default function SipCalculator() {
                 contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
               />
               <Area type="monotone" dataKey="invested" name="Invested Amount" stroke="#94a3b8" strokeWidth={2} fillOpacity={1} fill="url(#colorInvested)" />
-              <Area type="monotone" dataKey="wealth" name="Total Wealth" stroke="var(--primary-color)" strokeWidth={3} fillOpacity={1} fill="url(#colorWealth)" />
+              <Area type="monotone" dataKey="wealth" name="Total Wealth" stroke="var(--primary)" strokeWidth={3} fillOpacity={1} fill="url(#colorWealth)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>

@@ -4,6 +4,7 @@ import { useTina } from "tinacms/dist/react";
 import Link from "next/link";
 import { TrendingUp, Rocket, ShieldCheck, Target, Search, BarChart, Briefcase, Calculator, PieChart, ShieldAlert } from "lucide-react";
 import { tinaField } from "tinacms/dist/react";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 const iconMap = {
   TrendingUp: TrendingUp,
@@ -101,8 +102,7 @@ export default function BlockPageClient(props) {
                 <div className="container" style={{ maxWidth: '800px', margin: '0 auto', padding: '4rem 1.5rem' }}>
                   {block.heading && <h2 data-tina-field={tinaField(block, "heading")} style={{ marginBottom: '2rem' }}>{block.heading}</h2>}
                   <div className="prose" data-tina-field={tinaField(block, "body")}>
-                    {/* In a real app we'd use TinaMarkdown here. For now we just render it or assume it's simple string if not using TinaMarkdown */}
-                    {typeof block.body === 'string' ? <p>{block.body}</p> : <div dangerouslySetInnerHTML={{ __html: block.body }} />}
+                    <TinaMarkdown content={block.body} />
                   </div>
                 </div>
               </section>
@@ -134,7 +134,7 @@ export default function BlockPageClient(props) {
                   <div className="process-steps" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
                     {(block.steps || []).map((step, idx) => (
                       <div key={idx} className="process-step" data-tina-field={tinaField(step)} style={{ position: 'relative' }}>
-                        <div style={{ fontSize: '3rem', fontWeight: 'bold', color: 'var(--primary-color)', opacity: 0.2, marginBottom: '1rem' }}>{idx + 1}</div>
+                        <div style={{ fontSize: '3rem', fontWeight: 'bold', color: 'var(--primary)', opacity: 0.2, marginBottom: '1rem' }}>{idx + 1}</div>
                         <h3 data-tina-field={tinaField(step, "title")} style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{step.title}</h3>
                         <p data-tina-field={tinaField(step, "description")} style={{ color: '#475569' }}>{step.description}</p>
                       </div>
@@ -153,7 +153,7 @@ export default function BlockPageClient(props) {
                       const Icon = iconMap[service.iconName] || TrendingUp;
                       return (
                         <div key={idx} className="service-card" data-tina-field={tinaField(service)} style={{ backgroundColor: 'white', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-                          <Icon size={32} style={{ color: 'var(--primary-color)', marginBottom: '1.5rem' }} />
+                          <Icon size={32} style={{ color: 'var(--primary)', marginBottom: '1.5rem' }} />
                           <h3 data-tina-field={tinaField(service, "title")} style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>{service.title}</h3>
                           <p data-tina-field={tinaField(service, "description")} style={{ color: '#475569', marginBottom: '1.5rem', lineHeight: 1.6 }}>{service.description}</p>
                           {(service.tags && service.tags.length > 0) && (
@@ -185,7 +185,7 @@ export default function BlockPageClient(props) {
                     {(block.resources || []).map((resource, idx) => (
                       <Link key={idx} href={resource.url || "#"} className="resource-item" data-tina-field={tinaField(resource)} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.5rem', backgroundColor: 'white', border: '1px solid #e2e8f0', borderRadius: '8px', textDecoration: 'none', color: 'inherit', transition: 'all 0.2s' }}>
                         <span style={{ fontWeight: 500, fontSize: '1.125rem' }}>{resource.label}</span>
-                        <span style={{ color: 'var(--primary-color)' }}>→</span>
+                        <span style={{ color: 'var(--primary)' }}>→</span>
                       </Link>
                     ))}
                   </div>

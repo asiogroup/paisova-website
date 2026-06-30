@@ -58,7 +58,7 @@ export default function ToolsDashboard() {
               cursor: 'pointer',
               whiteSpace: 'nowrap',
               transition: 'all 0.2s',
-              backgroundColor: activeTool === tool.id ? 'var(--primary-color)' : '#f1f5f9',
+              backgroundColor: activeTool === tool.id ? 'var(--primary)' : '#f1f5f9',
               color: activeTool === tool.id ? 'white' : '#475569',
               boxShadow: activeTool === tool.id ? '0 4px 12px rgba(0,0,0,0.15)' : 'none',
             }}
