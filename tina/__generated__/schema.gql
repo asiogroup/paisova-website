@@ -54,6 +54,8 @@ type Query {
   collections: [Collection!]!
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
+  global(relativePath: String): Global!
+  globalConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: GlobalFilter): GlobalConnection!
   page(relativePath: String): Page!
   pageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PageFilter): PageConnection!
   post(relativePath: String): Post!
@@ -61,6 +63,7 @@ type Query {
 }
 
 input DocumentFilter {
+  global: GlobalFilter
   page: PageFilter
   post: PostFilter
 }
@@ -88,11 +91,12 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Page | Post | Folder
+union DocumentNode = Global | Page | Post | Folder
 
-type Page implements Node & Document {
-  title: String!
-  body: JSON
+type Global implements Node & Document {
+  primaryColor: String
+  secondaryColor: String
+  accentColor: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -105,15 +109,113 @@ input StringFilter {
   in: [String]
 }
 
+input GlobalFilter {
+  primaryColor: StringFilter
+  secondaryColor: StringFilter
+  accentColor: StringFilter
+}
+
+type GlobalConnectionEdges {
+  cursor: String!
+  node: Global
+}
+
+type GlobalConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [GlobalConnectionEdges]
+}
+
+type PageBlocksHero {
+  headline: String
+  subheadline: String
+  primaryButtonText: String
+  primaryButtonLink: String
+  secondaryButtonText: String
+  secondaryButtonLink: String
+}
+
+type PageBlocksStatsStatItems {
+  value: String
+  label: String
+}
+
+type PageBlocksStats {
+  statItems: [PageBlocksStatsStatItems]
+}
+
+type PageBlocksFeaturesFeatureItems {
+  title: String
+  description: String
+  iconName: String
+}
+
+type PageBlocksFeatures {
+  featureItems: [PageBlocksFeaturesFeatureItems]
+}
+
+type PageBlocksRichText {
+  body: JSON
+}
+
+union PageBlocks = PageBlocksHero | PageBlocksStats | PageBlocksFeatures | PageBlocksRichText
+
+type Page implements Node & Document {
+  title: String!
+  blocks: [PageBlocks]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input PageBlocksHeroFilter {
+  headline: StringFilter
+  subheadline: StringFilter
+  primaryButtonText: StringFilter
+  primaryButtonLink: StringFilter
+  secondaryButtonText: StringFilter
+  secondaryButtonLink: StringFilter
+}
+
+input PageBlocksStatsStatItemsFilter {
+  value: StringFilter
+  label: StringFilter
+}
+
+input PageBlocksStatsFilter {
+  statItems: PageBlocksStatsStatItemsFilter
+}
+
+input PageBlocksFeaturesFeatureItemsFilter {
+  title: StringFilter
+  description: StringFilter
+  iconName: StringFilter
+}
+
+input PageBlocksFeaturesFilter {
+  featureItems: PageBlocksFeaturesFeatureItemsFilter
+}
+
 input RichTextFilter {
   startsWith: String
   eq: String
   exists: Boolean
 }
 
+input PageBlocksRichTextFilter {
+  body: RichTextFilter
+}
+
+input PageBlocksFilter {
+  hero: PageBlocksHeroFilter
+  stats: PageBlocksStatsFilter
+  features: PageBlocksFeaturesFilter
+  richText: PageBlocksRichTextFilter
+}
+
 input PageFilter {
   title: StringFilter
-  body: RichTextFilter
+  blocks: PageBlocksFilter
 }
 
 type PageConnectionEdges {
@@ -167,6 +269,8 @@ type Mutation {
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   createFolder(collection: String, relativePath: String!): DocumentNode!
+  updateGlobal(relativePath: String!, params: GlobalMutation!): Global!
+  createGlobal(relativePath: String!, params: GlobalMutation!): Global!
   updatePage(relativePath: String!, params: PageMutation!): Page!
   createPage(relativePath: String!, params: PageMutation!): Page!
   updatePost(relativePath: String!, params: PostMutation!): Post!
@@ -174,19 +278,66 @@ type Mutation {
 }
 
 input DocumentUpdateMutation {
+  global: GlobalMutation
   page: PageMutation
   post: PostMutation
   relativePath: String
 }
 
 input DocumentMutation {
+  global: GlobalMutation
   page: PageMutation
   post: PostMutation
 }
 
+input GlobalMutation {
+  primaryColor: String
+  secondaryColor: String
+  accentColor: String
+}
+
+input PageBlocksHeroMutation {
+  headline: String
+  subheadline: String
+  primaryButtonText: String
+  primaryButtonLink: String
+  secondaryButtonText: String
+  secondaryButtonLink: String
+}
+
+input PageBlocksStatsStatItemsMutation {
+  value: String
+  label: String
+}
+
+input PageBlocksStatsMutation {
+  statItems: [PageBlocksStatsStatItemsMutation]
+}
+
+input PageBlocksFeaturesFeatureItemsMutation {
+  title: String
+  description: String
+  iconName: String
+}
+
+input PageBlocksFeaturesMutation {
+  featureItems: [PageBlocksFeaturesFeatureItemsMutation]
+}
+
+input PageBlocksRichTextMutation {
+  body: JSON
+}
+
+input PageBlocksMutation {
+  hero: PageBlocksHeroMutation
+  stats: PageBlocksStatsMutation
+  features: PageBlocksFeaturesMutation
+  richText: PageBlocksRichTextMutation
+}
+
 input PageMutation {
   title: String
-  body: JSON
+  blocks: [PageBlocksMutation]
 }
 
 input PostMutation {

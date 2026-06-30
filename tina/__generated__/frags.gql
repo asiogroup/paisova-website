@@ -1,7 +1,42 @@
+fragment GlobalParts on Global {
+  __typename
+  primaryColor
+  secondaryColor
+  accentColor
+}
+
 fragment PageParts on Page {
   __typename
   title
-  body
+  blocks {
+    __typename
+    ... on PageBlocksHero {
+      headline
+      subheadline
+      primaryButtonText
+      primaryButtonLink
+      secondaryButtonText
+      secondaryButtonLink
+    }
+    ... on PageBlocksStats {
+      statItems {
+        __typename
+        value
+        label
+      }
+    }
+    ... on PageBlocksFeatures {
+      featureItems {
+        __typename
+        title
+        description
+        iconName
+      }
+    }
+    ... on PageBlocksRichText {
+      body
+    }
+  }
 }
 
 fragment PostParts on Post {

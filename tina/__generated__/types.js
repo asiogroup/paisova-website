@@ -5,11 +5,47 @@ export function gql(strings, ...args) {
   });
   return str;
 }
+export const GlobalPartsFragmentDoc = gql`
+    fragment GlobalParts on Global {
+  __typename
+  primaryColor
+  secondaryColor
+  accentColor
+}
+    `;
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {
   __typename
   title
-  body
+  blocks {
+    __typename
+    ... on PageBlocksHero {
+      headline
+      subheadline
+      primaryButtonText
+      primaryButtonLink
+      secondaryButtonText
+      secondaryButtonLink
+    }
+    ... on PageBlocksStats {
+      statItems {
+        __typename
+        value
+        label
+      }
+    }
+    ... on PageBlocksFeatures {
+      featureItems {
+        __typename
+        title
+        description
+        iconName
+      }
+    }
+    ... on PageBlocksRichText {
+      body
+    }
+  }
 }
     `;
 export const PostPartsFragmentDoc = gql`
@@ -20,6 +56,63 @@ export const PostPartsFragmentDoc = gql`
   body
 }
     `;
+export const GlobalDocument = gql`
+    query global($relativePath: String!) {
+  global(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...GlobalParts
+  }
+}
+    ${GlobalPartsFragmentDoc}`;
+export const GlobalConnectionDocument = gql`
+    query globalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: GlobalFilter) {
+  globalConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...GlobalParts
+      }
+    }
+  }
+}
+    ${GlobalPartsFragmentDoc}`;
 export const PageDocument = gql`
     query page($relativePath: String!) {
   page(relativePath: $relativePath) {
@@ -136,6 +229,12 @@ export const PostConnectionDocument = gql`
     ${PostPartsFragmentDoc}`;
 export function getSdk(requester) {
   return {
+    global(variables, options) {
+      return requester(GlobalDocument, variables, options);
+    },
+    globalConnection(variables, options) {
+      return requester(GlobalConnectionDocument, variables, options);
+    },
     page(variables, options) {
       return requester(PageDocument, variables, options);
     },
