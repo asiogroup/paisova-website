@@ -82,6 +82,23 @@ export const PagePartsFragmentDoc = gql`
         url
       }
     }
+    ... on PageBlocksCategories {
+      title
+      linkText
+      linkUrl
+      items {
+        __typename
+        title
+        description
+        iconName
+      }
+    }
+    ... on PageBlocksCta {
+      title
+      description
+      buttonText
+      buttonLink
+    }
   }
 }
     `;

@@ -328,7 +328,30 @@ export type PageBlocksResourcesList = {
   resources?: Maybe<Array<Maybe<PageBlocksResourcesListResources>>>;
 };
 
-export type PageBlocks = PageBlocksHero | PageBlocksStats | PageBlocksFeatures | PageBlocksRichText | PageBlocksFaq | PageBlocksProcess | PageBlocksServicesGrid | PageBlocksResourcesList;
+export type PageBlocksCategoriesItems = {
+  __typename?: 'PageBlocksCategoriesItems';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  iconName?: Maybe<Scalars['String']['output']>;
+};
+
+export type PageBlocksCategories = {
+  __typename?: 'PageBlocksCategories';
+  title?: Maybe<Scalars['String']['output']>;
+  linkText?: Maybe<Scalars['String']['output']>;
+  linkUrl?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<PageBlocksCategoriesItems>>>;
+};
+
+export type PageBlocksCta = {
+  __typename?: 'PageBlocksCta';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  buttonText?: Maybe<Scalars['String']['output']>;
+  buttonLink?: Maybe<Scalars['String']['output']>;
+};
+
+export type PageBlocks = PageBlocksHero | PageBlocksStats | PageBlocksFeatures | PageBlocksRichText | PageBlocksFaq | PageBlocksProcess | PageBlocksServicesGrid | PageBlocksResourcesList | PageBlocksCategories | PageBlocksCta;
 
 export type Page = Node & Document & {
   __typename?: 'Page';
@@ -422,6 +445,26 @@ export type PageBlocksResourcesListFilter = {
   resources?: InputMaybe<PageBlocksResourcesListResourcesFilter>;
 };
 
+export type PageBlocksCategoriesItemsFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  iconName?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksCategoriesFilter = {
+  title?: InputMaybe<StringFilter>;
+  linkText?: InputMaybe<StringFilter>;
+  linkUrl?: InputMaybe<StringFilter>;
+  items?: InputMaybe<PageBlocksCategoriesItemsFilter>;
+};
+
+export type PageBlocksCtaFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  buttonText?: InputMaybe<StringFilter>;
+  buttonLink?: InputMaybe<StringFilter>;
+};
+
 export type PageBlocksFilter = {
   hero?: InputMaybe<PageBlocksHeroFilter>;
   stats?: InputMaybe<PageBlocksStatsFilter>;
@@ -431,6 +474,8 @@ export type PageBlocksFilter = {
   process?: InputMaybe<PageBlocksProcessFilter>;
   servicesGrid?: InputMaybe<PageBlocksServicesGridFilter>;
   resourcesList?: InputMaybe<PageBlocksResourcesListFilter>;
+  categories?: InputMaybe<PageBlocksCategoriesFilter>;
+  cta?: InputMaybe<PageBlocksCtaFilter>;
 };
 
 export type PageFilter = {
@@ -668,6 +713,26 @@ export type PageBlocksResourcesListMutation = {
   resources?: InputMaybe<Array<InputMaybe<PageBlocksResourcesListResourcesMutation>>>;
 };
 
+export type PageBlocksCategoriesItemsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  iconName?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PageBlocksCategoriesMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  linkText?: InputMaybe<Scalars['String']['input']>;
+  linkUrl?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<PageBlocksCategoriesItemsMutation>>>;
+};
+
+export type PageBlocksCtaMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  buttonText?: InputMaybe<Scalars['String']['input']>;
+  buttonLink?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type PageBlocksMutation = {
   hero?: InputMaybe<PageBlocksHeroMutation>;
   stats?: InputMaybe<PageBlocksStatsMutation>;
@@ -677,6 +742,8 @@ export type PageBlocksMutation = {
   process?: InputMaybe<PageBlocksProcessMutation>;
   servicesGrid?: InputMaybe<PageBlocksServicesGridMutation>;
   resourcesList?: InputMaybe<PageBlocksResourcesListMutation>;
+  categories?: InputMaybe<PageBlocksCategoriesMutation>;
+  cta?: InputMaybe<PageBlocksCtaMutation>;
 };
 
 export type PageMutation = {
@@ -692,7 +759,7 @@ export type PostMutation = {
 
 export type GlobalPartsFragment = { __typename: 'Global', primaryColor?: string | null, secondaryColor?: string | null, accentColor?: string | null };
 
-export type PagePartsFragment = { __typename: 'Page', title: string, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', heading?: string | null, body?: any | null } | { __typename: 'PageBlocksFaq', title?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'PageBlocksProcess', title?: string | null, subtitle?: string | null, steps?: Array<{ __typename: 'PageBlocksProcessSteps', title?: string | null, description?: string | null } | null> | null } | { __typename: 'PageBlocksServicesGrid', title?: string | null, services?: Array<{ __typename: 'PageBlocksServicesGridServices', title?: string | null, description?: string | null, iconName?: string | null, tags?: Array<string | null> | null } | null> | null } | { __typename: 'PageBlocksResourcesList', title?: string | null, subtitle?: string | null, resources?: Array<{ __typename: 'PageBlocksResourcesListResources', label?: string | null, url?: string | null } | null> | null } | null> | null };
+export type PagePartsFragment = { __typename: 'Page', title: string, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', heading?: string | null, body?: any | null } | { __typename: 'PageBlocksFaq', title?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'PageBlocksProcess', title?: string | null, subtitle?: string | null, steps?: Array<{ __typename: 'PageBlocksProcessSteps', title?: string | null, description?: string | null } | null> | null } | { __typename: 'PageBlocksServicesGrid', title?: string | null, services?: Array<{ __typename: 'PageBlocksServicesGridServices', title?: string | null, description?: string | null, iconName?: string | null, tags?: Array<string | null> | null } | null> | null } | { __typename: 'PageBlocksResourcesList', title?: string | null, subtitle?: string | null, resources?: Array<{ __typename: 'PageBlocksResourcesListResources', label?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksCategories', title?: string | null, linkText?: string | null, linkUrl?: string | null, items?: Array<{ __typename: 'PageBlocksCategoriesItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksCta', title?: string | null, description?: string | null, buttonText?: string | null, buttonLink?: string | null } | null> | null };
 
 export type PostPartsFragment = { __typename: 'Post', title: string, date: string, body?: any | null };
 
@@ -720,7 +787,7 @@ export type PageQueryVariables = Exact<{
 }>;
 
 
-export type PageQuery = { __typename?: 'Query', page: { __typename: 'Page', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', heading?: string | null, body?: any | null } | { __typename: 'PageBlocksFaq', title?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'PageBlocksProcess', title?: string | null, subtitle?: string | null, steps?: Array<{ __typename: 'PageBlocksProcessSteps', title?: string | null, description?: string | null } | null> | null } | { __typename: 'PageBlocksServicesGrid', title?: string | null, services?: Array<{ __typename: 'PageBlocksServicesGridServices', title?: string | null, description?: string | null, iconName?: string | null, tags?: Array<string | null> | null } | null> | null } | { __typename: 'PageBlocksResourcesList', title?: string | null, subtitle?: string | null, resources?: Array<{ __typename: 'PageBlocksResourcesListResources', label?: string | null, url?: string | null } | null> | null } | null> | null } };
+export type PageQuery = { __typename?: 'Query', page: { __typename: 'Page', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', heading?: string | null, body?: any | null } | { __typename: 'PageBlocksFaq', title?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'PageBlocksProcess', title?: string | null, subtitle?: string | null, steps?: Array<{ __typename: 'PageBlocksProcessSteps', title?: string | null, description?: string | null } | null> | null } | { __typename: 'PageBlocksServicesGrid', title?: string | null, services?: Array<{ __typename: 'PageBlocksServicesGridServices', title?: string | null, description?: string | null, iconName?: string | null, tags?: Array<string | null> | null } | null> | null } | { __typename: 'PageBlocksResourcesList', title?: string | null, subtitle?: string | null, resources?: Array<{ __typename: 'PageBlocksResourcesListResources', label?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksCategories', title?: string | null, linkText?: string | null, linkUrl?: string | null, items?: Array<{ __typename: 'PageBlocksCategoriesItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksCta', title?: string | null, description?: string | null, buttonText?: string | null, buttonLink?: string | null } | null> | null } };
 
 export type PageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -732,7 +799,7 @@ export type PageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PageConnectionQuery = { __typename?: 'Query', pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', heading?: string | null, body?: any | null } | { __typename: 'PageBlocksFaq', title?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'PageBlocksProcess', title?: string | null, subtitle?: string | null, steps?: Array<{ __typename: 'PageBlocksProcessSteps', title?: string | null, description?: string | null } | null> | null } | { __typename: 'PageBlocksServicesGrid', title?: string | null, services?: Array<{ __typename: 'PageBlocksServicesGridServices', title?: string | null, description?: string | null, iconName?: string | null, tags?: Array<string | null> | null } | null> | null } | { __typename: 'PageBlocksResourcesList', title?: string | null, subtitle?: string | null, resources?: Array<{ __typename: 'PageBlocksResourcesListResources', label?: string | null, url?: string | null } | null> | null } | null> | null } | null } | null> | null } };
+export type PageConnectionQuery = { __typename?: 'Query', pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', heading?: string | null, body?: any | null } | { __typename: 'PageBlocksFaq', title?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'PageBlocksProcess', title?: string | null, subtitle?: string | null, steps?: Array<{ __typename: 'PageBlocksProcessSteps', title?: string | null, description?: string | null } | null> | null } | { __typename: 'PageBlocksServicesGrid', title?: string | null, services?: Array<{ __typename: 'PageBlocksServicesGridServices', title?: string | null, description?: string | null, iconName?: string | null, tags?: Array<string | null> | null } | null> | null } | { __typename: 'PageBlocksResourcesList', title?: string | null, subtitle?: string | null, resources?: Array<{ __typename: 'PageBlocksResourcesListResources', label?: string | null, url?: string | null } | null> | null } | { __typename: 'PageBlocksCategories', title?: string | null, linkText?: string | null, linkUrl?: string | null, items?: Array<{ __typename: 'PageBlocksCategoriesItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksCta', title?: string | null, description?: string | null, buttonText?: string | null, buttonLink?: string | null } | null> | null } | null } | null> | null } };
 
 export type PostQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -829,6 +896,23 @@ export const PagePartsFragmentDoc = gql`
         label
         url
       }
+    }
+    ... on PageBlocksCategories {
+      title
+      linkText
+      linkUrl
+      items {
+        __typename
+        title
+        description
+        iconName
+      }
+    }
+    ... on PageBlocksCta {
+      title
+      description
+      buttonText
+      buttonLink
     }
   }
 }

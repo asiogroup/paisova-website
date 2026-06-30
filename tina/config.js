@@ -201,6 +201,36 @@ export default defineConfig({
                   },
                 ],
               },
+              {
+                name: "categories",
+                label: "Categories Section",
+                fields: [
+                  { type: "string", name: "title", label: "Section Title" },
+                  { type: "string", name: "linkText", label: "Link Text" },
+                  { type: "string", name: "linkUrl", label: "Link URL" },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "items",
+                    label: "Category Items",
+                    fields: [
+                      { type: "string", name: "title", label: "Title" },
+                      { type: "string", name: "description", label: "Description", ui: { component: "textarea" } },
+                      { type: "string", name: "iconName", label: "Icon (e.g., Rocket, TrendingUp, Briefcase, ShieldCheck, MoreHorizontal)" },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "cta",
+                label: "CTA Capsule",
+                fields: [
+                  { type: "string", name: "title", label: "Title" },
+                  { type: "string", name: "description", label: "Description", ui: { component: "textarea" } },
+                  { type: "string", name: "buttonText", label: "Button Text" },
+                  { type: "string", name: "buttonLink", label: "Button Link" },
+                ],
+              },
             ],
           },
         ],

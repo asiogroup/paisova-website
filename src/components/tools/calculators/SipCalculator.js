@@ -120,8 +120,13 @@ export default function SipCalculator() {
             <h3 style={{ fontSize: '1.5rem', color: '#059669' }}>{formatCurrency(totalGains)}</h3>
           </div>
           <div className="result-card" style={{ padding: '1.5rem', backgroundColor: 'var(--primary)', color: 'white', borderRadius: '12px' }}>
-            <p style={{ fontSize: '0.875rem', marginBottom: '0.5rem', opacity: 0.9 }}>Total Value</p>
-            <h3 style={{ fontSize: '1.75rem' }}>{formatCurrency(finalData.wealth)}</h3>
+            <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: 'white' }}>Projection</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div>
+                <p style={{ color: '#e2e8f0', fontSize: '0.875rem' }}>Estimated Value</p>
+                <h2 style={{ fontSize: '2rem', margin: '0.25rem 0', color: 'white' }}>{formatCurrency(finalData.wealth)}</h2>
+              </div>
+            </div>
           </div>
         </div>
 

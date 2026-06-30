@@ -121,12 +121,12 @@ export default function GoalPlanner() {
         {/* Result Cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
           <div className="result-card" style={{ padding: '1.5rem', backgroundColor: 'var(--primary)', color: 'white', borderRadius: '12px' }}>
-            <p style={{ fontSize: '0.875rem', marginBottom: '0.5rem', opacity: 0.9 }}>Required Monthly SIP</p>
-            <h3 style={{ fontSize: '1.75rem' }}>{formatCurrency(Math.round(calculations.requiredSip))}</h3>
+            <p style={{ color: '#e2e8f0', fontSize: '0.875rem', marginBottom: '0.5rem' }}>Required Monthly SIP</p>
+            <h3 style={{ fontSize: '1.5rem', color: 'white' }}>{formatCurrency(Math.round(calculations.requiredSip))}</h3>
           </div>
-          <div className="result-card" style={{ padding: '1.5rem', backgroundColor: '#f1f5f9', borderRadius: '12px' }}>
-            <p style={{ color: '#64748b', fontSize: '0.875rem', marginBottom: '0.5rem' }}>OR Required Lumpsum</p>
-            <h3 style={{ fontSize: '1.5rem', color: '#334155' }}>{formatCurrency(Math.round(calculations.requiredLumpsum))}</h3>
+          <div className="result-card" style={{ padding: '1.5rem', backgroundColor: 'var(--primary)', color: 'white', borderRadius: '12px' }}>
+            <p style={{ color: '#e2e8f0', fontSize: '0.875rem', marginBottom: '0.5rem' }}>OR Required Lumpsum</p>
+            <h3 style={{ fontSize: '1.5rem', color: 'white' }}>{formatCurrency(Math.round(calculations.requiredLumpsum))}</h3>
           </div>
         </div>
         

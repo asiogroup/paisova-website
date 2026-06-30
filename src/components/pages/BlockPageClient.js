@@ -2,7 +2,7 @@
 
 import { useTina } from "tinacms/dist/react";
 import Link from "next/link";
-import { TrendingUp, Rocket, ShieldCheck, Target, Search, BarChart, Briefcase, Calculator, PieChart, ShieldAlert } from "lucide-react";
+import { TrendingUp, Rocket, ShieldCheck, Target, Search, BarChart, Briefcase, Calculator, PieChart, ShieldAlert, MoreHorizontal } from "lucide-react";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
@@ -17,6 +17,7 @@ const iconMap = {
   Calculator: Calculator,
   PieChart: PieChart,
   ShieldAlert: ShieldAlert,
+  MoreHorizontal: MoreHorizontal,
 };
 
 export default function BlockPageClient(props) {
@@ -99,7 +100,7 @@ export default function BlockPageClient(props) {
           case "PageBlocksRichText":
             return (
               <section key={i} className="content-section" data-tina-field={tinaField(block)}>
-                <div className="container" style={{ maxWidth: '800px', margin: '0 auto', padding: '4rem 1.5rem' }}>
+                <div className="container" style={{ maxWidth: '800px', margin: '0 auto', padding: '8rem 1.5rem' }}>
                   {block.heading && <h2 data-tina-field={tinaField(block, "heading")} style={{ marginBottom: '2rem' }}>{block.heading}</h2>}
                   <div className="prose" data-tina-field={tinaField(block, "body")}>
                     <TinaMarkdown content={block.body} />
@@ -109,7 +110,7 @@ export default function BlockPageClient(props) {
             );
           case "PageBlocksFaq":
             return (
-              <section key={i} className="faq-section" data-tina-field={tinaField(block)} style={{ padding: '4rem 0', backgroundColor: '#f8fafc' }}>
+              <section key={i} className="faq-section section-light" data-tina-field={tinaField(block)} style={{ padding: '8rem 0' }}>
                 <div className="container" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 1.5rem' }}>
                   <h2 data-tina-field={tinaField(block, "title")} style={{ textAlign: 'center', marginBottom: '3rem' }}>{block.title}</h2>
                   <div className="faq-list" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -125,7 +126,7 @@ export default function BlockPageClient(props) {
             );
           case "PageBlocksProcess":
             return (
-              <section key={i} className="process-section" data-tina-field={tinaField(block)} style={{ padding: '4rem 0' }}>
+              <section key={i} className="process-section" data-tina-field={tinaField(block)} style={{ padding: '8rem 0' }}>
                 <div className="container" style={{ padding: '0 1.5rem' }}>
                   <div className="section-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <h2 data-tina-field={tinaField(block, "title")}>{block.title}</h2>
@@ -145,7 +146,7 @@ export default function BlockPageClient(props) {
             );
           case "PageBlocksServicesGrid":
             return (
-              <section key={i} className="services-grid-section" data-tina-field={tinaField(block)} style={{ padding: '4rem 0', backgroundColor: '#f8fafc' }}>
+              <section key={i} className="services-grid-section section-light" data-tina-field={tinaField(block)} style={{ padding: '8rem 0' }}>
                 <div className="container" style={{ padding: '0 1.5rem' }}>
                   <h2 data-tina-field={tinaField(block, "title")} style={{ textAlign: 'center', marginBottom: '3rem' }}>{block.title}</h2>
                   <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
@@ -175,7 +176,7 @@ export default function BlockPageClient(props) {
             );
           case "PageBlocksResourcesList":
             return (
-              <section key={i} className="resources-section" data-tina-field={tinaField(block)} style={{ padding: '4rem 0' }}>
+              <section key={i} className="resources-section" data-tina-field={tinaField(block)} style={{ padding: '8rem 0' }}>
                 <div className="container" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 1.5rem' }}>
                   <div className="section-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
                     <h2 data-tina-field={tinaField(block, "title")}>{block.title}</h2>
@@ -188,6 +189,60 @@ export default function BlockPageClient(props) {
                         <span style={{ color: 'var(--primary)' }}>→</span>
                       </Link>
                     ))}
+                  </div>
+                </div>
+              </section>
+            );
+          case "PageBlocksCategories":
+            return (
+              <section key={i} className="categories-section" data-tina-field={tinaField(block)} style={{ padding: '8rem 0', backgroundColor: 'var(--bg-main)' }}>
+                <div className="container" style={{ padding: '0 1.5rem' }}>
+                  <div className="section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
+                    <h2 data-tina-field={tinaField(block, "title")} style={{ margin: 0 }}>{block.title}</h2>
+                    {block.linkText && (
+                      <Link href={block.linkUrl || "#"} style={{ color: 'var(--text-body)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        {block.linkText} <span style={{ fontSize: '1.2rem' }}>→</span>
+                      </Link>
+                    )}
+                  </div>
+                  <div className="categories-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
+                    {(block.items || []).map((item, idx) => {
+                      const Icon = iconMap[item.iconName] || TrendingUp;
+                      return (
+                        <div key={idx} className="category-card" data-tina-field={tinaField(item)} style={{ backgroundColor: 'white', border: '1px solid var(--border-light)', padding: '2rem', borderRadius: '12px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', transition: 'all 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'var(--shadow-md)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border-light)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+                          <div style={{ backgroundColor: 'rgba(20, 51, 37, 0.05)', padding: '1rem', borderRadius: '50%', marginBottom: '1.5rem', color: 'var(--primary)' }}>
+                            <Icon size={32} />
+                          </div>
+                          <h3 data-tina-field={tinaField(item, "title")} style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>{item.title}</h3>
+                          <p data-tina-field={tinaField(item, "description")} style={{ color: 'var(--text-light)', fontSize: '0.875rem' }}>{item.description}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </section>
+            );
+          case "PageBlocksCta":
+            return (
+              <section key={i} className="cta-section" data-tina-field={tinaField(block)} style={{ padding: '6rem 0' }}>
+                <div className="container" style={{ padding: '0 1.5rem' }}>
+                  <div className="cta-capsule flex items-center justify-between" style={{ backgroundColor: 'var(--bg-capsule)', padding: '4rem', borderRadius: '24px', flexWrap: 'wrap', gap: '2rem' }}>
+                    <div style={{ flex: '1 1 300px', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+                      <div style={{ flexShrink: 0, width: '80px', height: '80px', backgroundColor: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 25px rgba(0,0,0,0.05)' }}>
+                        <span style={{ fontSize: '2rem' }}>💌</span>
+                      </div>
+                      <div>
+                        <h2 data-tina-field={tinaField(block, "title")} style={{ marginBottom: '0.5rem', fontSize: '2rem' }}>{block.title}</h2>
+                        <p data-tina-field={tinaField(block, "description")} style={{ color: 'var(--text-body)', maxWidth: '400px' }}>{block.description}</p>
+                      </div>
+                    </div>
+                    {block.buttonText && (
+                      <div style={{ flexShrink: 0 }}>
+                        <a href={block.buttonLink || "#"} className="btn btn-primary" data-tina-field={tinaField(block, "buttonText")} target="_blank" rel="noreferrer" style={{ padding: '1rem 2rem', fontSize: '1.125rem' }}>
+                          {block.buttonText}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </section>

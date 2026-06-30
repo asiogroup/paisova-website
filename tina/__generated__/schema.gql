@@ -203,7 +203,27 @@ type PageBlocksResourcesList {
   resources: [PageBlocksResourcesListResources]
 }
 
-union PageBlocks = PageBlocksHero | PageBlocksStats | PageBlocksFeatures | PageBlocksRichText | PageBlocksFaq | PageBlocksProcess | PageBlocksServicesGrid | PageBlocksResourcesList
+type PageBlocksCategoriesItems {
+  title: String
+  description: String
+  iconName: String
+}
+
+type PageBlocksCategories {
+  title: String
+  linkText: String
+  linkUrl: String
+  items: [PageBlocksCategoriesItems]
+}
+
+type PageBlocksCta {
+  title: String
+  description: String
+  buttonText: String
+  buttonLink: String
+}
+
+union PageBlocks = PageBlocksHero | PageBlocksStats | PageBlocksFeatures | PageBlocksRichText | PageBlocksFaq | PageBlocksProcess | PageBlocksServicesGrid | PageBlocksResourcesList | PageBlocksCategories | PageBlocksCta
 
 type Page implements Node & Document {
   title: String!
@@ -296,6 +316,26 @@ input PageBlocksResourcesListFilter {
   resources: PageBlocksResourcesListResourcesFilter
 }
 
+input PageBlocksCategoriesItemsFilter {
+  title: StringFilter
+  description: StringFilter
+  iconName: StringFilter
+}
+
+input PageBlocksCategoriesFilter {
+  title: StringFilter
+  linkText: StringFilter
+  linkUrl: StringFilter
+  items: PageBlocksCategoriesItemsFilter
+}
+
+input PageBlocksCtaFilter {
+  title: StringFilter
+  description: StringFilter
+  buttonText: StringFilter
+  buttonLink: StringFilter
+}
+
 input PageBlocksFilter {
   hero: PageBlocksHeroFilter
   stats: PageBlocksStatsFilter
@@ -305,6 +345,8 @@ input PageBlocksFilter {
   process: PageBlocksProcessFilter
   servicesGrid: PageBlocksServicesGridFilter
   resourcesList: PageBlocksResourcesListFilter
+  categories: PageBlocksCategoriesFilter
+  cta: PageBlocksCtaFilter
 }
 
 input PageFilter {
@@ -467,6 +509,26 @@ input PageBlocksResourcesListMutation {
   resources: [PageBlocksResourcesListResourcesMutation]
 }
 
+input PageBlocksCategoriesItemsMutation {
+  title: String
+  description: String
+  iconName: String
+}
+
+input PageBlocksCategoriesMutation {
+  title: String
+  linkText: String
+  linkUrl: String
+  items: [PageBlocksCategoriesItemsMutation]
+}
+
+input PageBlocksCtaMutation {
+  title: String
+  description: String
+  buttonText: String
+  buttonLink: String
+}
+
 input PageBlocksMutation {
   hero: PageBlocksHeroMutation
   stats: PageBlocksStatsMutation
@@ -476,6 +538,8 @@ input PageBlocksMutation {
   process: PageBlocksProcessMutation
   servicesGrid: PageBlocksServicesGridMutation
   resourcesList: PageBlocksResourcesListMutation
+  categories: PageBlocksCategoriesMutation
+  cta: PageBlocksCtaMutation
 }
 
 input PageMutation {

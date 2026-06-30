@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --primary: #c99839;       /* Golden yellow from logo/buttons */
-  --primary-hover: #b3832d;
-  --secondary: #25D366;     /* WhatsApp green */
-  --secondary-hover: #1fb956;
+  --primary: #143325;       /* Deep Forest Green */
+  --primary-hover: #0D221A;
+  --secondary: #c99839;     /* Golden yellow for accents */
+  --secondary-hover: #b3832d;
   
   --bg-main: #ffffff;
-  --bg-subtle: #faf8f5;     /* Slight warm off-white */
+  --bg-subtle: #FDFBF7;     /* Soft beige */
+  --bg-capsule: #F5F1E8;    /* Slightly darker beige for CTA capsule */
   --bg-dark: #121212;
 
   --text-dark: #1f1f1f;
@@ -86,7 +87,11 @@ button {
 }
 
 .section {
-  padding: 6rem 0;
+  padding: 8rem 0;
+}
+
+.section-padding-large {
+  padding: 10rem 0;
 }
 
 .section-light {
@@ -144,12 +149,12 @@ button {
 }
 
 .btn-whatsapp {
-  background-color: var(--secondary);
+  background-color: #25D366;
   color: var(--text-white);
 }
 
 .btn-whatsapp:hover {
-  background-color: var(--secondary-hover);
+  background-color: #1fb956;
 }
 
 .card {
