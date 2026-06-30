@@ -2,7 +2,7 @@
 
 import { useTina } from "tinacms/dist/react";
 import Link from "next/link";
-import { TrendingUp, Rocket, ShieldCheck, Target, Search, BarChart, Briefcase, Calculator, PieChart, ShieldAlert, MoreHorizontal, ArrowRight, Eye, Users, Award, ChevronRight } from "lucide-react";
+import { TrendingUp, Rocket, ShieldCheck, Target, Search, BarChart, Briefcase, Calculator, PieChart, ShieldAlert, MoreHorizontal, ArrowRight, Eye, Users, Award, ChevronRight, MessageCircle } from "lucide-react";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 
@@ -241,9 +241,16 @@ export default function BlockPageClient(props) {
                         <h2 data-tina-field={tinaField(block, "title")}>{block.title}</h2>
                         <p data-tina-field={tinaField(block, "description")}>{block.description}</p>
                       </div>
-                      <div className="cta-email-form">
-                        <input type="email" placeholder="Enter your email address" />
-                        <button type="button">Subscribe</button>
+                      <div style={{ flexShrink: 0 }}>
+                        <a 
+                          href="https://wa.me/919876543210?text=Hi%20Paisova,%20I%20would%20like%20to%20know%20more%20about%20your%20services." 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="btn btn-whatsapp"
+                          style={{ padding: '0.875rem 1.75rem', fontSize: '1rem' }}
+                        >
+                          <MessageCircle size={20} /> Message on WhatsApp
+                        </a>
                       </div>
                     </div>
                   </div>
