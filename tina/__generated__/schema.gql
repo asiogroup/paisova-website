@@ -155,10 +155,55 @@ type PageBlocksFeatures {
 }
 
 type PageBlocksRichText {
+  heading: String
   body: JSON
 }
 
-union PageBlocks = PageBlocksHero | PageBlocksStats | PageBlocksFeatures | PageBlocksRichText
+type PageBlocksFaqQuestions {
+  question: String
+  answer: String
+}
+
+type PageBlocksFaq {
+  title: String
+  questions: [PageBlocksFaqQuestions]
+}
+
+type PageBlocksProcessSteps {
+  title: String
+  description: String
+}
+
+type PageBlocksProcess {
+  title: String
+  subtitle: String
+  steps: [PageBlocksProcessSteps]
+}
+
+type PageBlocksServicesGridServices {
+  title: String
+  description: String
+  iconName: String
+  tags: [String]
+}
+
+type PageBlocksServicesGrid {
+  title: String
+  services: [PageBlocksServicesGridServices]
+}
+
+type PageBlocksResourcesListResources {
+  label: String
+  url: String
+}
+
+type PageBlocksResourcesList {
+  title: String
+  subtitle: String
+  resources: [PageBlocksResourcesListResources]
+}
+
+union PageBlocks = PageBlocksHero | PageBlocksStats | PageBlocksFeatures | PageBlocksRichText | PageBlocksFaq | PageBlocksProcess | PageBlocksServicesGrid | PageBlocksResourcesList
 
 type Page implements Node & Document {
   title: String!
@@ -203,7 +248,52 @@ input RichTextFilter {
 }
 
 input PageBlocksRichTextFilter {
+  heading: StringFilter
   body: RichTextFilter
+}
+
+input PageBlocksFaqQuestionsFilter {
+  question: StringFilter
+  answer: StringFilter
+}
+
+input PageBlocksFaqFilter {
+  title: StringFilter
+  questions: PageBlocksFaqQuestionsFilter
+}
+
+input PageBlocksProcessStepsFilter {
+  title: StringFilter
+  description: StringFilter
+}
+
+input PageBlocksProcessFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  steps: PageBlocksProcessStepsFilter
+}
+
+input PageBlocksServicesGridServicesFilter {
+  title: StringFilter
+  description: StringFilter
+  iconName: StringFilter
+  tags: StringFilter
+}
+
+input PageBlocksServicesGridFilter {
+  title: StringFilter
+  services: PageBlocksServicesGridServicesFilter
+}
+
+input PageBlocksResourcesListResourcesFilter {
+  label: StringFilter
+  url: StringFilter
+}
+
+input PageBlocksResourcesListFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  resources: PageBlocksResourcesListResourcesFilter
 }
 
 input PageBlocksFilter {
@@ -211,6 +301,10 @@ input PageBlocksFilter {
   stats: PageBlocksStatsFilter
   features: PageBlocksFeaturesFilter
   richText: PageBlocksRichTextFilter
+  faq: PageBlocksFaqFilter
+  process: PageBlocksProcessFilter
+  servicesGrid: PageBlocksServicesGridFilter
+  resourcesList: PageBlocksResourcesListFilter
 }
 
 input PageFilter {
@@ -325,7 +419,52 @@ input PageBlocksFeaturesMutation {
 }
 
 input PageBlocksRichTextMutation {
+  heading: String
   body: JSON
+}
+
+input PageBlocksFaqQuestionsMutation {
+  question: String
+  answer: String
+}
+
+input PageBlocksFaqMutation {
+  title: String
+  questions: [PageBlocksFaqQuestionsMutation]
+}
+
+input PageBlocksProcessStepsMutation {
+  title: String
+  description: String
+}
+
+input PageBlocksProcessMutation {
+  title: String
+  subtitle: String
+  steps: [PageBlocksProcessStepsMutation]
+}
+
+input PageBlocksServicesGridServicesMutation {
+  title: String
+  description: String
+  iconName: String
+  tags: [String]
+}
+
+input PageBlocksServicesGridMutation {
+  title: String
+  services: [PageBlocksServicesGridServicesMutation]
+}
+
+input PageBlocksResourcesListResourcesMutation {
+  label: String
+  url: String
+}
+
+input PageBlocksResourcesListMutation {
+  title: String
+  subtitle: String
+  resources: [PageBlocksResourcesListResourcesMutation]
 }
 
 input PageBlocksMutation {
@@ -333,6 +472,10 @@ input PageBlocksMutation {
   stats: PageBlocksStatsMutation
   features: PageBlocksFeaturesMutation
   richText: PageBlocksRichTextMutation
+  faq: PageBlocksFaqMutation
+  process: PageBlocksProcessMutation
+  servicesGrid: PageBlocksServicesGridMutation
+  resourcesList: PageBlocksResourcesListMutation
 }
 
 input PageMutation {

@@ -43,7 +43,44 @@ export const PagePartsFragmentDoc = gql`
       }
     }
     ... on PageBlocksRichText {
+      heading
       body
+    }
+    ... on PageBlocksFaq {
+      title
+      questions {
+        __typename
+        question
+        answer
+      }
+    }
+    ... on PageBlocksProcess {
+      title
+      subtitle
+      steps {
+        __typename
+        title
+        description
+      }
+    }
+    ... on PageBlocksServicesGrid {
+      title
+      services {
+        __typename
+        title
+        description
+        iconName
+        tags
+      }
+    }
+    ... on PageBlocksResourcesList {
+      title
+      subtitle
+      resources {
+        __typename
+        label
+        url
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 import client from "../../tina/__generated__/client";
-import HomePageClient from "../components/pages/HomePageClient";
+import BlockPageClient from "../components/pages/BlockPageClient";
 
 export default async function Home() {
   // Fetch the data from TinaCMS for the homepage
@@ -8,6 +8,6 @@ export default async function Home() {
   });
 
   return (
-    <HomePageClient data={data} query={query} variables={variables} />
+    <BlockPageClient data={data} query={query} variables={variables} />
   );
 }

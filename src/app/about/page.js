@@ -1,8 +1,13 @@
-export default function About() {
+import client from "../../../tina/__generated__/client";
+import BlockPageClient from "../../components/pages/BlockPageClient";
+
+export default async function About() {
+  // Fetch the data from TinaCMS for the about page
+  const { data, query, variables } = await client.queries.page({
+    relativePath: "about.mdx",
+  });
+
   return (
-    <div className="section container text-center">
-      <h1 className="h1">About Us</h1>
-      <p className="text-lead" style={{ marginTop: '2rem' }}>Learn more about the team at Paisova.</p>
-    </div>
+    <BlockPageClient data={data} query={query} variables={variables} />
   );
 }

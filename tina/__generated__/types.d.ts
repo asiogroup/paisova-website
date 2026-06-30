@@ -272,10 +272,63 @@ export type PageBlocksFeatures = {
 
 export type PageBlocksRichText = {
   __typename?: 'PageBlocksRichText';
+  heading?: Maybe<Scalars['String']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
 };
 
-export type PageBlocks = PageBlocksHero | PageBlocksStats | PageBlocksFeatures | PageBlocksRichText;
+export type PageBlocksFaqQuestions = {
+  __typename?: 'PageBlocksFaqQuestions';
+  question?: Maybe<Scalars['String']['output']>;
+  answer?: Maybe<Scalars['String']['output']>;
+};
+
+export type PageBlocksFaq = {
+  __typename?: 'PageBlocksFaq';
+  title?: Maybe<Scalars['String']['output']>;
+  questions?: Maybe<Array<Maybe<PageBlocksFaqQuestions>>>;
+};
+
+export type PageBlocksProcessSteps = {
+  __typename?: 'PageBlocksProcessSteps';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type PageBlocksProcess = {
+  __typename?: 'PageBlocksProcess';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  steps?: Maybe<Array<Maybe<PageBlocksProcessSteps>>>;
+};
+
+export type PageBlocksServicesGridServices = {
+  __typename?: 'PageBlocksServicesGridServices';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  iconName?: Maybe<Scalars['String']['output']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type PageBlocksServicesGrid = {
+  __typename?: 'PageBlocksServicesGrid';
+  title?: Maybe<Scalars['String']['output']>;
+  services?: Maybe<Array<Maybe<PageBlocksServicesGridServices>>>;
+};
+
+export type PageBlocksResourcesListResources = {
+  __typename?: 'PageBlocksResourcesListResources';
+  label?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type PageBlocksResourcesList = {
+  __typename?: 'PageBlocksResourcesList';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  resources?: Maybe<Array<Maybe<PageBlocksResourcesListResources>>>;
+};
+
+export type PageBlocks = PageBlocksHero | PageBlocksStats | PageBlocksFeatures | PageBlocksRichText | PageBlocksFaq | PageBlocksProcess | PageBlocksServicesGrid | PageBlocksResourcesList;
 
 export type Page = Node & Document & {
   __typename?: 'Page';
@@ -321,7 +374,52 @@ export type RichTextFilter = {
 };
 
 export type PageBlocksRichTextFilter = {
+  heading?: InputMaybe<StringFilter>;
   body?: InputMaybe<RichTextFilter>;
+};
+
+export type PageBlocksFaqQuestionsFilter = {
+  question?: InputMaybe<StringFilter>;
+  answer?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksFaqFilter = {
+  title?: InputMaybe<StringFilter>;
+  questions?: InputMaybe<PageBlocksFaqQuestionsFilter>;
+};
+
+export type PageBlocksProcessStepsFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksProcessFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  steps?: InputMaybe<PageBlocksProcessStepsFilter>;
+};
+
+export type PageBlocksServicesGridServicesFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  iconName?: InputMaybe<StringFilter>;
+  tags?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksServicesGridFilter = {
+  title?: InputMaybe<StringFilter>;
+  services?: InputMaybe<PageBlocksServicesGridServicesFilter>;
+};
+
+export type PageBlocksResourcesListResourcesFilter = {
+  label?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type PageBlocksResourcesListFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  resources?: InputMaybe<PageBlocksResourcesListResourcesFilter>;
 };
 
 export type PageBlocksFilter = {
@@ -329,6 +427,10 @@ export type PageBlocksFilter = {
   stats?: InputMaybe<PageBlocksStatsFilter>;
   features?: InputMaybe<PageBlocksFeaturesFilter>;
   richText?: InputMaybe<PageBlocksRichTextFilter>;
+  faq?: InputMaybe<PageBlocksFaqFilter>;
+  process?: InputMaybe<PageBlocksProcessFilter>;
+  servicesGrid?: InputMaybe<PageBlocksServicesGridFilter>;
+  resourcesList?: InputMaybe<PageBlocksResourcesListFilter>;
 };
 
 export type PageFilter = {
@@ -518,7 +620,52 @@ export type PageBlocksFeaturesMutation = {
 };
 
 export type PageBlocksRichTextMutation = {
+  heading?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type PageBlocksFaqQuestionsMutation = {
+  question?: InputMaybe<Scalars['String']['input']>;
+  answer?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PageBlocksFaqMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  questions?: InputMaybe<Array<InputMaybe<PageBlocksFaqQuestionsMutation>>>;
+};
+
+export type PageBlocksProcessStepsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PageBlocksProcessMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  steps?: InputMaybe<Array<InputMaybe<PageBlocksProcessStepsMutation>>>;
+};
+
+export type PageBlocksServicesGridServicesMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  iconName?: InputMaybe<Scalars['String']['input']>;
+  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type PageBlocksServicesGridMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  services?: InputMaybe<Array<InputMaybe<PageBlocksServicesGridServicesMutation>>>;
+};
+
+export type PageBlocksResourcesListResourcesMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PageBlocksResourcesListMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  resources?: InputMaybe<Array<InputMaybe<PageBlocksResourcesListResourcesMutation>>>;
 };
 
 export type PageBlocksMutation = {
@@ -526,6 +673,10 @@ export type PageBlocksMutation = {
   stats?: InputMaybe<PageBlocksStatsMutation>;
   features?: InputMaybe<PageBlocksFeaturesMutation>;
   richText?: InputMaybe<PageBlocksRichTextMutation>;
+  faq?: InputMaybe<PageBlocksFaqMutation>;
+  process?: InputMaybe<PageBlocksProcessMutation>;
+  servicesGrid?: InputMaybe<PageBlocksServicesGridMutation>;
+  resourcesList?: InputMaybe<PageBlocksResourcesListMutation>;
 };
 
 export type PageMutation = {
@@ -541,7 +692,7 @@ export type PostMutation = {
 
 export type GlobalPartsFragment = { __typename: 'Global', primaryColor?: string | null, secondaryColor?: string | null, accentColor?: string | null };
 
-export type PagePartsFragment = { __typename: 'Page', title: string, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', body?: any | null } | null> | null };
+export type PagePartsFragment = { __typename: 'Page', title: string, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', heading?: string | null, body?: any | null } | { __typename: 'PageBlocksFaq', title?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'PageBlocksProcess', title?: string | null, subtitle?: string | null, steps?: Array<{ __typename: 'PageBlocksProcessSteps', title?: string | null, description?: string | null } | null> | null } | { __typename: 'PageBlocksServicesGrid', title?: string | null, services?: Array<{ __typename: 'PageBlocksServicesGridServices', title?: string | null, description?: string | null, iconName?: string | null, tags?: Array<string | null> | null } | null> | null } | { __typename: 'PageBlocksResourcesList', title?: string | null, subtitle?: string | null, resources?: Array<{ __typename: 'PageBlocksResourcesListResources', label?: string | null, url?: string | null } | null> | null } | null> | null };
 
 export type PostPartsFragment = { __typename: 'Post', title: string, date: string, body?: any | null };
 
@@ -569,7 +720,7 @@ export type PageQueryVariables = Exact<{
 }>;
 
 
-export type PageQuery = { __typename?: 'Query', page: { __typename: 'Page', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', body?: any | null } | null> | null } };
+export type PageQuery = { __typename?: 'Query', page: { __typename: 'Page', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', heading?: string | null, body?: any | null } | { __typename: 'PageBlocksFaq', title?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'PageBlocksProcess', title?: string | null, subtitle?: string | null, steps?: Array<{ __typename: 'PageBlocksProcessSteps', title?: string | null, description?: string | null } | null> | null } | { __typename: 'PageBlocksServicesGrid', title?: string | null, services?: Array<{ __typename: 'PageBlocksServicesGridServices', title?: string | null, description?: string | null, iconName?: string | null, tags?: Array<string | null> | null } | null> | null } | { __typename: 'PageBlocksResourcesList', title?: string | null, subtitle?: string | null, resources?: Array<{ __typename: 'PageBlocksResourcesListResources', label?: string | null, url?: string | null } | null> | null } | null> | null } };
 
 export type PageConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -581,7 +732,7 @@ export type PageConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PageConnectionQuery = { __typename?: 'Query', pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', body?: any | null } | null> | null } | null } | null> | null } };
+export type PageConnectionQuery = { __typename?: 'Query', pageConnection: { __typename?: 'PageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PageConnectionEdges', cursor: string, node?: { __typename: 'Page', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PageBlocksHero', headline?: string | null, subheadline?: string | null, primaryButtonText?: string | null, primaryButtonLink?: string | null, secondaryButtonText?: string | null, secondaryButtonLink?: string | null } | { __typename: 'PageBlocksStats', statItems?: Array<{ __typename: 'PageBlocksStatsStatItems', value?: string | null, label?: string | null } | null> | null } | { __typename: 'PageBlocksFeatures', featureItems?: Array<{ __typename: 'PageBlocksFeaturesFeatureItems', title?: string | null, description?: string | null, iconName?: string | null } | null> | null } | { __typename: 'PageBlocksRichText', heading?: string | null, body?: any | null } | { __typename: 'PageBlocksFaq', title?: string | null, questions?: Array<{ __typename: 'PageBlocksFaqQuestions', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'PageBlocksProcess', title?: string | null, subtitle?: string | null, steps?: Array<{ __typename: 'PageBlocksProcessSteps', title?: string | null, description?: string | null } | null> | null } | { __typename: 'PageBlocksServicesGrid', title?: string | null, services?: Array<{ __typename: 'PageBlocksServicesGridServices', title?: string | null, description?: string | null, iconName?: string | null, tags?: Array<string | null> | null } | null> | null } | { __typename: 'PageBlocksResourcesList', title?: string | null, subtitle?: string | null, resources?: Array<{ __typename: 'PageBlocksResourcesListResources', label?: string | null, url?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export type PostQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -640,7 +791,44 @@ export const PagePartsFragmentDoc = gql`
       }
     }
     ... on PageBlocksRichText {
+      heading
       body
+    }
+    ... on PageBlocksFaq {
+      title
+      questions {
+        __typename
+        question
+        answer
+      }
+    }
+    ... on PageBlocksProcess {
+      title
+      subtitle
+      steps {
+        __typename
+        title
+        description
+      }
+    }
+    ... on PageBlocksServicesGrid {
+      title
+      services {
+        __typename
+        title
+        description
+        iconName
+        tags
+      }
+    }
+    ... on PageBlocksResourcesList {
+      title
+      subtitle
+      resources {
+        __typename
+        label
+        url
+      }
     }
   }
 }

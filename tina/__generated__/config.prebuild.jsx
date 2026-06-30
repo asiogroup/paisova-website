@@ -116,7 +116,85 @@ var config_default = defineConfig({
                 name: "richText",
                 label: "Rich Text",
                 fields: [
+                  { type: "string", name: "heading", label: "Heading" },
                   { type: "rich-text", name: "body", label: "Body" }
+                ]
+              },
+              {
+                name: "faq",
+                label: "FAQ Section",
+                fields: [
+                  { type: "string", name: "title", label: "Section Title" },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "questions",
+                    label: "Questions",
+                    fields: [
+                      { type: "string", name: "question", label: "Question" },
+                      { type: "string", name: "answer", label: "Answer", ui: { component: "textarea" } }
+                    ]
+                  }
+                ]
+              },
+              {
+                name: "process",
+                label: "Process Steps",
+                fields: [
+                  { type: "string", name: "title", label: "Section Title" },
+                  { type: "string", name: "subtitle", label: "Subtitle", ui: { component: "textarea" } },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "steps",
+                    label: "Steps",
+                    fields: [
+                      { type: "string", name: "title", label: "Step Title" },
+                      { type: "string", name: "description", label: "Description", ui: { component: "textarea" } }
+                    ]
+                  }
+                ]
+              },
+              {
+                name: "servicesGrid",
+                label: "Services Grid",
+                fields: [
+                  { type: "string", name: "title", label: "Section Title" },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "services",
+                    label: "Services",
+                    fields: [
+                      { type: "string", name: "title", label: "Service Title" },
+                      { type: "string", name: "description", label: "Description", ui: { component: "textarea" } },
+                      { type: "string", name: "iconName", label: "Icon (e.g., Target, Search, BarChart)" },
+                      {
+                        type: "string",
+                        list: true,
+                        name: "tags",
+                        label: "Ideal For (Tags)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                name: "resourcesList",
+                label: "Resources List",
+                fields: [
+                  { type: "string", name: "title", label: "Section Title" },
+                  { type: "string", name: "subtitle", label: "Subtitle", ui: { component: "textarea" } },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "resources",
+                    label: "Links",
+                    fields: [
+                      { type: "string", name: "label", label: "Link Label" },
+                      { type: "string", name: "url", label: "URL" }
+                    ]
+                  }
                 ]
               }
             ]
