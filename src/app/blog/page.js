@@ -24,11 +24,11 @@ export default async function BlogPage() {
     const post = edge.node;
     return {
       title: post.title,
-      snippet: post.snippet || "Read this article for more insights on the topic.",
-      tag: post.tag || "Blog",
+      snippet: "Read this article for more insights on the topic.",
+      tag: "Blog",
       readTime: "5 min read",
       date: post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : "Recent",
-      author: post.author ? `By ${post.author}` : "By Paisova Team",
+      author: "By Paisova Team",
       filename: post._sys.filename,
     };
   });

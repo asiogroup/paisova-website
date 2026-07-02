@@ -245,6 +245,22 @@ var config_default = defineConfig({
             required: true
           },
           {
+            type: "string",
+            name: "snippet",
+            label: "Snippet",
+            ui: { component: "textarea" }
+          },
+          {
+            type: "string",
+            name: "tag",
+            label: "Category Tag"
+          },
+          {
+            type: "string",
+            name: "author",
+            label: "Author"
+          },
+          {
             type: "datetime",
             name: "date",
             label: "Date",

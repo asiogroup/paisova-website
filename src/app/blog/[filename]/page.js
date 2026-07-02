@@ -15,8 +15,7 @@ export default async function BlogPostPage({ params }) {
         <h1 style={{ marginBottom: '1rem', fontSize: '2.5rem', lineHeight: 1.2 }}>{post.title}</h1>
         
         <div style={{ color: 'var(--text-light)', marginBottom: '3rem', fontSize: '1.1rem' }}>
-          {formattedDate} {post.author ? ` · ${post.author}` : " · By Paisova Team"}
-          {post.tag && <span style={{ marginLeft: '1rem', padding: '0.2rem 0.6rem', backgroundColor: 'var(--bg-light)', borderRadius: '4px', fontSize: '0.9rem' }}>{post.tag}</span>}
+          {formattedDate} {" · By Paisova Team"}
         </div>
 
         <div className="blog-content">
