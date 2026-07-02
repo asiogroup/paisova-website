@@ -10,7 +10,8 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }) {
-  const response = await client.queries.post({ relativePath: `${params.filename}.mdx` });
+  const resolvedParams = await params;
+  const response = await client.queries.post({ relativePath: `${resolvedParams.filename}.mdx` });
   const post = response.data.post;
 
   const formattedDate = post.date 
