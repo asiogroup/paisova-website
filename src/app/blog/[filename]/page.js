@@ -1,6 +1,14 @@
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import client from "../../../../tina/__generated__/client";
 
+export async function generateStaticParams() {
+  const postsResponse = await client.queries.postConnection();
+  const edges = postsResponse.data?.postConnection?.edges || [];
+  return edges.map((edge) => ({
+    filename: edge.node._sys.filename,
+  }));
+}
+
 export default async function BlogPostPage({ params }) {
   const response = await client.queries.post({ relativePath: `${params.filename}.mdx` });
   const post = response.data.post;
