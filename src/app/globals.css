@@ -860,3 +860,125 @@ button {
   .categories-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════════════ NEW HEADER & MOBILE NAV ═══════════════════════ */
+.site-logo {
+  height: 36px;
+  object-fit: contain;
+}
+
+.desktop-nav {
+  display: flex;
+  background-color: white;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.mobile-bottom-nav {
+  display: none;
+}
+
+.mobile-nav-overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  
+  .mobile-header-container {
+    justify-content: center !important;
+  }
+  
+  .mobile-header-container .desktop-only-btn {
+    display: none !important;
+  }
+
+  /* Sticky Footer Mobile Navigation */
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-light);
+    z-index: 999;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem 0;
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+  }
+
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--text-light);
+    font-size: 0.7rem;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .bottom-nav-item.active,
+  .bottom-nav-item:active,
+  .bottom-nav-item:hover {
+    color: var(--primary);
+  }
+
+  .bottom-nav-item svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  /* Mobile Overlay Menu */
+  .mobile-nav-overlay {
+    display: flex;
+    position: fixed;
+    top: 60px; /* Below header */
+    left: 0;
+    right: 0;
+    bottom: 60px; /* Above bottom nav */
+    background: var(--bg-main);
+    z-index: 998;
+    flex-direction: column;
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    overflow-y: auto;
+  }
+  
+  .mobile-nav-overlay.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .mobile-nav-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .mobile-nav-content a {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  
+  /* Ensure main content doesn't get hidden behind bottom nav */
+  body {
+    padding-bottom: 70px;
+  }
+}
