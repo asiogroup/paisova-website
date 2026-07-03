@@ -1,6 +1,10 @@
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import client from "../../../../tina/__generated__/client";
 
+// Allow on-demand generation of new posts + periodic revalidation.
+export const revalidate = 60;
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const postsResponse = await client.queries.postConnection();
   const edges = postsResponse.data?.postConnection?.edges || [];

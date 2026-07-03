@@ -6,6 +6,10 @@ export const metadata = {
   description: "Read our latest market insights, investment strategies, and financial planning guides.",
 };
 
+// Revalidate the listing periodically so newly published posts appear
+// without needing a full redeploy (self-heals Tina Cloud indexing lag).
+export const revalidate = 60;
+
 const emojis = ['📈', '🏦', '📊', '💼', '🚀', '🛡️'];
 const gradients = [
   ['#e8f0e8', '#d8e8d0'],
