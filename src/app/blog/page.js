@@ -19,19 +19,26 @@ const gradients = [
 export default async function BlogPage() {
   const postsResponse = await client.queries.postConnection();
   const edges = postsResponse.data.postConnection.edges || [];
-  
-  const blogPosts = edges.map((edge) => {
-    const post = edge.node;
-    return {
-      title: post.title,
-      snippet: "Read this article for more insights on the topic.",
-      tag: "Blog",
-      readTime: "5 min read",
-      date: post.date ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : "Recent",
-      author: "By Paisova Team",
-      filename: post._sys.filename,
-    };
-  });
+
+  const blogPosts = edges
+    .map((edge) => {
+      const post = edge.node;
+      return {
+        title: post.title,
+        snippet: post.excerpt || "Read this article for more insights on the topic.",
+        tag: post.category || "Blog",
+        readTime: post.readTime ? `${post.readTime} min read` : "5 min read",
+        date: post.date
+          ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+          : "Recent",
+        rawDate: post.date ? new Date(post.date).getTime() : 0,
+        author: post.author ? `By ${post.author}` : "By Paisova Team",
+        coverImage: post.coverImage || null,
+        filename: post._sys.filename,
+      };
+    })
+    // newest first
+    .sort((a, b) => b.rawDate - a.rawDate);
 
   return (
     <div style={{ minHeight: '100vh' }}>
@@ -46,9 +53,17 @@ export default async function BlogPage() {
             <Link key={idx} href={`/blog/${post.filename}`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="blog-card">
                 <div className="blog-card-image">
-                  <div style={{ width: '100%', height: '100%', background: `linear-gradient(135deg, ${gradients[idx % 6][0]} 0%, ${gradients[idx % 6][1]} 100%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem' }}>
-                    {emojis[idx % 6]}
-                  </div>
+                  {post.coverImage ? (
+                    <img
+                      src={post.coverImage}
+                      alt={post.title}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <div style={{ width: '100%', height: '100%', background: `linear-gradient(135deg, ${gradients[idx % 6][0]} 0%, ${gradients[idx % 6][1]} 100%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem' }}>
+                      {emojis[idx % 6]}
+                    </div>
+                  )}
                 </div>
                 <div className="blog-card-body">
                   <div className="blog-card-meta">
