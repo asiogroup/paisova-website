@@ -863,14 +863,9 @@ button {
 
 /* ═══════════════════════ NEW HEADER & MOBILE NAV ═══════════════════════ */
 .site-logo {
-  height: 36px;
+  height: 48px;
   object-fit: contain;
-}
-
-.desktop-nav {
-  display: flex;
-  background-color: white;
-  border-bottom: 1px solid var(--border-light);
+  mix-blend-mode: multiply; /* Removes white background on light headers */
 }
 
 .mobile-bottom-nav {
@@ -882,18 +877,6 @@ button {
 }
 
 @media (max-width: 768px) {
-  .desktop-nav {
-    display: none !important;
-  }
-  
-  .mobile-header-container {
-    justify-content: center !important;
-  }
-  
-  .mobile-header-container .desktop-only-btn {
-    display: none !important;
-  }
-
   /* Sticky Footer Mobile Navigation */
   .mobile-bottom-nav {
     display: flex;

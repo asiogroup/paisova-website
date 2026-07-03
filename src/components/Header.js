@@ -9,32 +9,33 @@ export default function Header() {
   return (
     <>
       <header className="site-header">
-        <div className="container flex items-center justify-between mobile-header-container">
-          <div className="desktop-only-btn" style={{ width: '24px' }}></div> {/* Spacer for centering on mobile if needed, though we can handle via CSS */}
+        <div className="container flex items-center justify-between">
           
           <Link href="/" className="logo-link">
             <img src="/logo.png" alt="Paisova" className="site-logo" />
           </Link>
 
+          {/* Desktop Navigation */}
+          <nav className="nav-menu desktop-only-btn">
+            <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
+            <Link href="/services" onClick={() => setIsMenuOpen(false)}>Invest</Link>
+            <Link href="/blog" onClick={() => setIsMenuOpen(false)}>Learn</Link>
+            <Link href="/tools" onClick={() => setIsMenuOpen(false)}>Tools</Link>
+            <Link href="/about" onClick={() => setIsMenuOpen(false)}>About Us</Link>
+            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+          </nav>
+
+          {/* Top Right Desktop Buttons */}
           <div className="desktop-only-btn" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <button aria-label="Search" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-dark)', padding: '0.5rem' }}>
+              <Search size={20} />
+            </button>
             <Link href="/contact" className="btn btn-primary" style={{ padding: '0.65rem 1.5rem', fontSize: '0.9rem' }}>
               Get Started
             </Link>
           </div>
         </div>
       </header>
-
-      {/* Desktop Navigation Menu (hidden on mobile via CSS if desired, or we can just keep the original structure) */}
-      <nav className={`nav-menu desktop-nav`}>
-        <div className="container flex justify-center gap-6 py-2">
-          <Link href="/">Home</Link>
-          <Link href="/services">Invest</Link>
-          <Link href="/blog">Learn</Link>
-          <Link href="/tools">Tools</Link>
-          <Link href="/about">About Us</Link>
-          <Link href="/contact">Contact</Link>
-        </div>
-      </nav>
 
       {/* Mobile Menu Overlay */}
       <nav className={`mobile-nav-overlay ${isMenuOpen ? 'open' : ''}`}>
