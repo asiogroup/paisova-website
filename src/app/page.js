@@ -4,6 +4,8 @@ import matter from "gray-matter";
 import client from "../../tina/__generated__/client";
 import BlockPageClient from "../components/pages/BlockPageClient";
 
+export const revalidate = 60;
+
 const POSTS_DIR = path.join(process.cwd(), "content", "posts");
 
 function getRecentPosts(limit = 3) {

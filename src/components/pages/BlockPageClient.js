@@ -80,7 +80,7 @@ export default function BlockPageClient(props) {
                     <div className="hero-visual-card">
                       <p className="portfolio-value">Portfolio Value</p>
                       <p className="portfolio-amount">₹12,75,000</p>
-                      <p className="portfolio-change">▲ 18.5% (1Y)</p>
+                      <p className="portfolio-change">Illustrative figures only</p>
                       <div style={{ marginTop: '1.5rem', display: 'flex', gap: '0.5rem' }}>
                         {['1W', '1M', '3M', '6M', '1Y', 'All'].map(p => (
                           <span key={p} style={{ padding: '0.35rem 0.75rem', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 500, background: p === '1Y' ? 'var(--primary)' : 'transparent', color: p === '1Y' ? 'white' : 'var(--text-light)', cursor: 'pointer' }}>{p}</span>

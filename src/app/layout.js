@@ -6,7 +6,7 @@ import client from "../../tina/__generated__/client";
 
 export const metadata = {
   title: "Paisova | Grow What's Yours",
-  description: "Mutual Funds, Pre-IPO Shares, Alpha Returns, Wealth Solutions - curated for serious investors.",
+  description: "Mutual Funds, Pre-IPO Shares, and curated wealth solutions for serious investors.",
 };
 
 export default async function RootLayout({ children }) {

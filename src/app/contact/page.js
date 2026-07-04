@@ -118,8 +118,8 @@ export default function ContactPage() {
                   name="subject"
                   style={{ padding: '0.875rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)', fontFamily: 'inherit', fontSize: '0.95rem', backgroundColor: 'white' }}
                 >
-                  <option value="Investment Advisory">Investment Advisory</option>
-                  <option value="Portfolio Review">Portfolio Review</option>
+                  <option value="Investment Guidance">Investment Guidance</option>
+                  <option value="Portfolio Discussion">Portfolio Discussion</option>
                   <option value="General Inquiry">General Inquiry</option>
                 </select>
               </div>
