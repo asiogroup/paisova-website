@@ -46,7 +46,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 style={{ margin: 0, fontSize: '1rem' }}>Call Us</h4>
-                  <a href="tel:+919876543210" style={{ color: 'var(--text-body)', fontSize: '0.9rem' }}>+91 98765 43210</a>
+                  <a href="tel:+919889885105" style={{ color: 'var(--text-body)', fontSize: '0.9rem' }}>+91 98898 85105</a>
                 </div>
               </div>
 
@@ -56,7 +56,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h4 style={{ margin: 0, fontSize: '1rem' }}>Visit Us</h4>
-                  <span style={{ color: 'var(--text-body)', fontSize: '0.9rem' }}>Mumbai, Maharashtra, India</span>
+                  <span style={{ color: 'var(--text-body)', fontSize: '0.9rem' }}>New Delhi, India</span>
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@ export default function ContactPage() {
                 <p style={{ fontSize: '0.9rem', marginBottom: '0', maxWidth: '100%' }}>Message us directly on WhatsApp.</p>
               </div>
               <a 
-                href="https://wa.me/919876543210?text=Hi%20Paisova,%20I%20would%20like%20to%20know%20more%20about%20your%20services." 
+                href="https://wa.me/919889885105?text=Hi%20Paisova,%20I%20would%20like%20to%20know%20more%20about%20your%20services."
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="btn btn-whatsapp"
