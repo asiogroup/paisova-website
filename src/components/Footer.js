@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>SEBI Registration (if applicable). All investments are subject to market risks.</p>
+          <p>All investments are subject to market risks. Please read all offer and scheme-related documents carefully before investing.</p>
           <p>paisova.com</p>
         </div>
       </div>

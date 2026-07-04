@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }) {
 
   return (
     <div style={{ minHeight: '100vh', padding: '4rem 0' }}>
-      <div className="container section prose">
+      <div className="container section prose" style={{ maxWidth: '1000px' }}>
         {data.category && (
           <span className="blog-card-tag" style={{ display: 'inline-block', marginBottom: '1rem' }}>
             {data.category}
