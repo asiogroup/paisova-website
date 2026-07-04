@@ -1,14 +1,12 @@
 import Link from "next/link";
-import client from "../../../tina/__generated__/client";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 
 export const metadata = {
   title: "Insights & Blog | Paisova",
   description: "Read our latest market insights, investment strategies, and financial planning guides.",
 };
-
-// Revalidate the listing periodically so newly published posts appear
-// without needing a full redeploy (self-heals Tina Cloud indexing lag).
-export const revalidate = 60;
 
 const emojis = ['📈', '🏦', '📊', '💼', '🚀', '🛡️'];
 const gradients = [
@@ -20,29 +18,40 @@ const gradients = [
   ['#f0e0e0', '#e8d0d0'],
 ];
 
-export default async function BlogPage() {
-  const postsResponse = await client.queries.postConnection();
-  const edges = postsResponse.data.postConnection.edges || [];
+const POSTS_DIR = path.join(process.cwd(), "content", "posts");
 
-  const blogPosts = edges
-    .map((edge) => {
-      const post = edge.node;
+function getAllPosts() {
+  let files = [];
+  try {
+    files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".mdx"));
+  } catch {
+    return [];
+  }
+
+  return files
+    .map((file) => {
+      const raw = fs.readFileSync(path.join(POSTS_DIR, file), "utf8");
+      const { data } = matter(raw);
+      const dateVal = data.date ? new Date(data.date) : null;
       return {
-        title: post.title,
-        snippet: post.excerpt || "Read this article for more insights on the topic.",
-        tag: post.category || "Blog",
-        readTime: post.readTime ? `${post.readTime} min read` : "5 min read",
-        date: post.date
-          ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        title: data.title || file.replace(/\.mdx$/, ""),
+        snippet: data.excerpt || "Read this article for more insights on the topic.",
+        tag: data.category || "Blog",
+        readTime: data.readTime ? `${data.readTime} min read` : "5 min read",
+        date: dateVal
+          ? dateVal.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
           : "Recent",
-        rawDate: post.date ? new Date(post.date).getTime() : 0,
-        author: post.author ? `By ${post.author}` : "By Paisova Team",
-        coverImage: post.coverImage || null,
-        filename: post._sys.filename,
+        rawDate: dateVal ? dateVal.getTime() : 0,
+        author: data.author ? `By ${data.author}` : "By Paisova Team",
+        coverImage: data.coverImage || null,
+        filename: file.replace(/\.mdx$/, ""),
       };
     })
-    // newest first
     .sort((a, b) => b.rawDate - a.rawDate);
+}
+
+export default function BlogPage() {
+  const blogPosts = getAllPosts();
 
   return (
     <div style={{ minHeight: '100vh' }}>
