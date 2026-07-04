@@ -4,13 +4,15 @@ import { useState } from "react";
 import SipCalculator from "./calculators/SipCalculator";
 import LumpsumCalculator from "./calculators/LumpsumCalculator";
 import GoalPlanner from "./calculators/GoalPlanner";
+import RetirementCalculator from "./calculators/RetirementCalculator";
+import CagrCalculator from "./calculators/CagrCalculator";
 
 const tools = [
   { id: "sip", label: "SIP Calculator", component: SipCalculator },
   { id: "lumpsum", label: "Lumpsum Calculator", component: LumpsumCalculator },
   { id: "goal", label: "Goal Planner", component: GoalPlanner },
-  { id: "retirement", label: "Retirement", component: () => <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-light)' }}>Retirement Planner Coming Soon</div> },
-  { id: "cagr", label: "CAGR", component: () => <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-light)' }}>CAGR Calculator Coming Soon</div> },
+  { id: "retirement", label: "Retirement", component: RetirementCalculator },
+  { id: "cagr", label: "CAGR", component: CagrCalculator },
 ];
 
 export default function ToolsDashboard() {
