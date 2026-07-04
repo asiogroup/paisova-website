@@ -5,11 +5,13 @@ Blog posts are plain **MDX files** in `content/posts/`. The filename becomes the
 
 Publishing is fully git-based: **add a file → commit → push to `main` → Vercel auto-deploys** (live in ~1–2 minutes). There is no separate CMS step required.
 
+> The public blog reads these `.mdx` files directly from the repo (via `gray-matter` + `react-markdown`). It does **not** depend on TinaCMS Cloud, so schema/field changes will never break the build again — this was the cause of the earlier "schema mismatch" deploy failures.
+
 ## Two ways to publish
 
 **A. From this Cowork project (fastest).** Ask Claude to "write and publish a post about X." Claude drafts the MDX, commits, and pushes to `main`. It's live shortly after.
 
-**B. From the TinaCMS visual editor.** Go to `https://www.paisova.com/admin`, log in, and add a post through the UI. (Requires the Tina Cloud `NEXT_PUBLIC_TINA_CLIENT_ID` + `TINA_TOKEN` env vars to be set in Vercel — currently placeholders.)
+**B. By hand.** Create a new `.mdx` file in `content/posts/`, then commit and push to `main` (see git commands at the bottom). The TinaCMS visual editor at `/admin` also still works for editing if its Tina Cloud env vars are configured, but it is optional — it is not required for the public site to build or publish.
 
 ## Post file template
 
